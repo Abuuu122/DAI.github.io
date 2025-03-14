@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Dereflection Any Image with Diffusion Priors and Diversified Data">
+  <meta name="keywords" content="Single Image Reflection Removal, Diffusion Model, Reflection Removal">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dereflection Any Image with Diffusion Priors and Diversified Data</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2X3RQT9C4V"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-2X3RQT9C4V');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="./static/css/index-sass.css">
+  <link rel="icon" href="./static/images/favicon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/compare.js"></script>
+  <script src="./static/js/preload-videos.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full has-text-centered">
+          <!-- <p style="text-align:center;">
+            <image width="80%" src="static/images/logo.png" class="img-responsive" alt="logo">
+            </p> -->
+          <p style="text-align:center;">
+          <img width="150px" height="150px" src="static/images/favicon.png" class="img-responsive" alt="logo">
+          </p>
+          <h1 class="title is-1 publication-title">Dereflection Any Image with Diffusion Priors and Diversified Data</h1>
+          <h2 class="is-size-4 publication-venue">Preprint</h2>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="">Jichen Hu</a><sup>1*</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?hl=zh-CN&user=StdXTR8AAAAJ">Chen Yang</a><sup>1*</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Zanwei Zhou</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://jaminfong.cn/">Jiemin Fang</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Xiaokang Yang</a><sup>1</sup>
+            </span>
+            <span class="author-block">
+              <a href="https://www.qitian1987.com/">Qi Tian</a><sup>2</sup>
+            </span>
+            <span class="author-block">
+              <a href="https://shenwei1231.github.io/">Wei Shen</a><sup>1✉</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>MoE Key Lab of Artificial Intelligence, AI Institute, SJTU</span><br/>
+            <span class="author-block"><sup>2</sup>Huawei Inc.</span>
+          </div>
+
+          <div>
+            <span>* <i>Equal contribution.</i></span></br>
+            <!-- <span>† <i>Project lead.</i></span></br> -->
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- <span class="link-block">
+                <a href="https://raw.githubusercontent.com/GaussianObject/gaussianobject.github.io/main/assets/paper.pdf"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper - HQ</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://dl.acm.org/doi/10.1145/3687759"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper - TOG</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=s5arAXdgdZQ"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-google-drive"></i>
+                  </span>
+                  <span>Data</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full" id="single-comparison">
+        <div class="content has-text-justified">
+          <p>
+            Our model demonstrates strong and general reflection removal capabilities in diverse real-world scenarios. <strong>Upper:</strong> Original images with reflections. <strong>Bottom:</strong> Results generated by our model. The demonstrated scenarios encompass multiple reflection types, including glass, plastic materials, water surfaces, and digital displays, 
+          </p>
+        </div>
+        <p style="text-align:center;"></p>
+          <img src="static/images/teaser.png" alt="Sample Image" width="100%">
+        </p>
+      </div>
+    </div>
+</section>
+
+<section class="section grey-bg">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Reflection removal of a single image remains a highly challenging task due to the complex entanglement between target scenes and unwanted reflections. Despite significant progress, existing methods are hindered by the scarcity of high-quality, diverse data and insufficient restoration priors, resulting in limited generalization across various real-world scenarios. In this paper, we propose Dereflection Any Image, a comprehensive solution with an efficient data preparation pipeline and a generalizable model for robust reflection removal. First, we introduce a dataset named Diverse Reflection Removal (DRR) created by randomly rotating reflective mediums in target scenes, enabling variation of reflection angles and intensities, and setting a new benchmark in scale, quality, and diversity. Second, we propose a diffusion-based framework with one-step diffusion for deterministic outputs and fast inference. To ensure stable learning, we design a three-stage progressive training strategy, including reflection-invariant finetuning to encourage consistent outputs across varying reflection patterns that characterize our dataset. Extensive experiments show that our method achieves SOTA performance on both common benchmarks and challenging in-the-wild images, showing superior generalization across diverse real-world scenes.
+          </p>
+        </div>
+      </div>
+    </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Video</h2>
+        <video poster="" id="evolution" autoplay controls muted loop playsinline height="100%">
+          <source src="static/videos/demo.mp4" type="video/mp4">
+        </video>
+        <!-- <div class="content has-text-justified">
+          <p>
+            Evolution of the 3D objects with Gaussian splatting only, with structure priors and with Gaussian repair model injected.
+          </p>
+        </div> -->
+      </div>
+    </div>
+</section>
+
+<section class="section grey-bg">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Visual Quality</h2>
+        <div class="columns is-centered">
+          <!-- 第一行 -->
+          <div class="column">
+            <span>
+              <image id="group1-image1" src="static/images/teaser/1.png" style="display:none;"></image>
+              <image id="group1-image2" src="static/images/teaser/1_.png" style="display:none;">
+              <canvas height=0 id="group1-canvas"></canvas>
+            </span>
+          </div>
+          <div class="column">
+            <span>
+              <image id="group2-image1" src="static/images/teaser/2.png" style="display:none;"></image>
+              <image id="group2-image2" src="static/images/teaser/2_.png" style="display:none;">
+              <canvas height=0 id="group2-canvas"></canvas>
+            </span>
+          </div>
+          <div class="column">
+            <span>
+              <image id="group3-image1" src="static/images/teaser/3_crop.png" style="display:none;"></image>
+              <image id="group3-image2" src="static/images/teaser/3_crop_.png" style="display:none;">
+              <canvas height=0 id="group3-canvas"></canvas>
+            </span>
+          </div>
+        </div>
+        <div class="columns is-centered">
+          <!-- 第二行 -->
+          <div class="column">
+            <span>
+              <image id="group4-image1" src="static/images/teaser/4.png" style="display:none;">
+              <image id="group4-image2" src="static/images/teaser/4_.png" style="display:none;">
+              <canvas height=0 id="group4-canvas"></canvas>
+            </span>
+          </div>
+          <div class="column">
+            <span>
+              <image id="group5-image1" src="static/images/teaser/5.png" style="display:none;">
+              <image id="group5-image2" src="static/images/teaser/5_.png" style="display:none;">
+              <canvas height=0 id="group5-canvas"></canvas>
+            </span>
+          </div>
+          <div class="column">
+            <span>
+              <image id="group6-image1" src="static/images/teaser/6.png" style="display:none;">
+              <image id="group6-image2" src="static/images/teaser/6_.png" style="display:none;">
+              <canvas height=0 id="group6-canvas"></canvas>
+            </span>
+          </div>
+        </div>
+        <!-- <script>
+          // 确保图片加载完成后调用 compareImages 函数
+          window.onload = function() {
+            // 初始化每组图片的对比
+            compareImages("group1-image1", "group1-image2", "group1-canvas");
+            compareImages("group2-image1", "group2-image2", "group2-canvas");
+            compareImages("group3-image1", "group3-image2", "group3-canvas");
+            compareImages("group4-image1", "group4-image2", "group4-canvas");
+            compareImages("group5-image1", "group5-image2", "group5-canvas");
+            compareImages("group6-image1", "group6-image2", "group6-canvas");
+          };
+        </script> -->
+      </div>
+    </div>
+</section>
+
+
+
+<section class="section grey-bg">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full" id="more-comparison">
+        <h2 class="title is-3">Comparison</h2>
+        <div class="is-centered method-buttons">
+          <button class="button method-button is-white is-success is-selected" value="DSIT" onclick="selectCompImage(this)">DSIT</button>
+          <button class="button method-button is-white" value="RRW" onclick="selectCompImage(this)">RRW</button>
+          <button class="button method-button is-white" value="DSRNet" onclick="selectCompImage(this)">DSRNet</button>
+          <button class="button method-button is-white" value="RobustSIRR" onclick="selectCompImage(this)">RobustSIRR</button>
+        </div>
+        <br>
+        <!-- <div>
+          <span>
+            <img src="static/images/comparison/scene1_DAI.png" id="more-comparison-image" alt="comparison-images">
+            <hr>
+            <img src="static/images/comparison/scene2_DAI.png" id="more-comparison-image" alt="comparison-images">
+            <hr>
+            <img src="static/images/comparison/scene3_DAI.png" id="more-comparison-image" alt="comparison-images">
+            <hr>
+            <img src="static/images/comparison/scene4_DAI.png" id="more-comparison-image" alt="comparison-images">
+            <hr>
+            <img src="static/images/comparison/scene5_DAI.png" id="more-comparison-image" alt="comparison-images">
+          </span>
+          <p>Generated with different methods for various scenes.</p>
+        </div> -->
+        <div>
+          <span>
+            <image src="static/images/comparison/scene1/DAI.png" id="more-comparison-image1" style="display:none;" alt="input-images">
+            <image src="static/images/comparison/scene1/DSIT.png" id="more-comparison-image2" style="display:none;" alt="input-images">
+            <canvas height=0 id="more-comparison-canvas"></canvas>
+            <script>
+              window.onload = function() {
+                compareImages("more-comparison-image1", "more-comparison-image2", "more-comparison-canvas", 0.5);
+                compareImages("group1-image1", "group1-image2", "group1-canvas", 0.3);
+                compareImages("group2-image1", "group2-image2", "group2-canvas", 0.3);
+                compareImages("group3-image1", "group3-image2", "group3-canvas", 0.3);
+                compareImages("group4-image1", "group4-image2", "group4-canvas", 0.3);
+                compareImages("group5-image1", "group5-image2", "group5-canvas", 0.3);
+                compareImages("group6-image1", "group6-image2", "group6-canvas", 0.3);
+              };
+            </script>
+          </span>
+        </div>
+
+        <br>
+        <div class="is-centered scene-buttons">
+          <button class="scene-button is-success is-selected" value="scene1" onclick="selectCompImage(this)">
+            <img src="static/images/comparison/scene1/DAI.png" alt="Scene 1" style="height: 50px; width: auto;">
+          </button>
+          <button class="scene-button is-white" value="scene2" onclick="selectCompImage(this)">
+            <img src="static/images/comparison/scene2/DAI.png" alt="Scene 2" style="height: 50px; width: auto;">
+          </button>
+          <button class="scene-button is-white" value="scene3" onclick="selectCompImage(this)">
+            <img src="static/images/comparison/scene3/DAI.png" alt="Scene 3" style="height: 50px; width: auto;">
+          </button>
+          <button class="scene-button is-white" value="scene4" onclick="selectCompImage(this)">
+            <img src="static/images/comparison/scene4/DAI.png" alt="Scene 4" style="height: 50px; width: auto;">
+          </button>
+          <button class="scene-button is-white" value="scene5" onclick="selectCompImage(this)">
+            <img src="static/images/comparison/scene5/DAI.png" alt="Scene 5" style="height: 50px; width: auto;">
+          </button>
+          <button class="scene-button is-white" value="scene6" onclick="selectCompImage(this)">
+            <img src="static/images/comparison/scene6/DAI.png" alt="Scene 5" style="height: 50px; width: auto;">
+          </button>
+          <button class="scene-button is-white" value="scene7" onclick="selectCompImage(this)">
+            <img src="static/images/comparison/scene7/DAI.png" alt="Scene 5" style="height: 50px; width: auto;">
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Data Collection</h2>
+        <p style="text-align:center;">
+          <image width="80%" src="static/images/collection.png" class="img-responsive" alt="overview">
+        </p>
+        <div class="content has-text-justified">
+          <br>
+          <p>
+            Data collection pipeline of real (above) and synthetic (below) data. Real data is captured by recording videos while rotating a glass panel at various angles, then processed to align mixed images with their ground truth transmission layers. Synthetic data is generated by randomly chosen coefficients and filtered to produce high-quality image pairs.          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section grey-bg">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Framework</h2>
+        <p style="text-align:center;">
+          <image width="80%" src="static/images/framework.png" class="img-responsive" alt="overview">
+        </p>
+        <div class="content has-text-justified">
+          <br>
+          <p>
+          Our proposed framework. It consists of a U-net with one-step denoising strategy, a ControlNet to input the mixed image processed by the encoder <span style="font-family: 'Times New Roman', Times, serif;">𝓔</span>, and a cross-latent decoder <span style="font-family: 'Times New Roman', Times, serif;">𝓓</span> to mitigate blurriness and preserve details.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Progressive Training</h2>
+        <p style="text-align:center;">
+          <image width="80%" src="static/images/training.png" class="img-responsive" alt="overview">
+        </p>
+        <div class="content has-text-justified">
+          <br>
+          <p>
+            The three stages of progressive training. First, we train the ControlNet and the upsampling blocks of the U-Net using the basic one-step diffusion loss. Second, we finetune these components by incorporating the consistent loss. Finally, we train the cross-latent decoder using the image reconstruction loss.          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full" id="more-comparison">
+        <h2 class="title is-3">More Qualitative Results</h2>
+        <div class="is-centered method-buttons">
+          <button class="button method-button is-white is-success is-selected" value="DAI" onclick="selectCompImage(this)">DAI</button>
+          <button class="button method-button is-white" value="DSIT" onclick="selectCompImage(this)">DSIT</button>
+          <button class="button method-button is-white" value="DietNeRF" onclick="selectCompVideo(this)">DietNeRF</button>
+          <button class="button method-button is-white" value="RegNeRF" onclick="selectCompVideo(this)">RegNeRF</button>
+          <button class="button method-button is-white" value="FreeNeRF" onclick="selectCompVideo(this)">FreeNeRF</button>
+          <button class="button method-button is-white" value="SparseNeRF" onclick="selectCompVideo(this)">SparseNeRF</button>
+          <button class="button method-button is-white" value="ZeroRF" onclick="selectCompVideo(this)">ZeroRF</button>
+          <button class="button method-button is-white" value="FSGS" onclick="selectCompVideo(this)">FSGS</button>
+        </div>
+        <div>
+          <span>
+            <video poster="" id="more-comparison-video" autoplay muted loop playsinline src="static/videos/comparison/mip360_bonsai_4_3DGS.mp4" onplay="resizeAndPlay(this)"></video>
+            <image src="static/images/comparison/mip360_bonsai_4.png" id="more-comparison-image" alt="input-images">
+            <canvas height=0 id="more-comparison-canvas"></canvas>
+          </span>
+          <p>Generated with only <strong>four input images</strong>.</p>
+        </div>
+        <div class="is-centered scene-buttons">
+          <button class="button scene-button is-white is-success is-selected" value="mip360_bonsai" onclick="selectCompVideo(this)">bonsai</button>
+          <button class="button scene-button is-white" value="mip360_garden" onclick="selectCompVideo(this)">garden</button>
+          <button class="button scene-button is-white" value="mip360_kitchen" onclick="selectCompVideo(this)">kitchen</button>
+          <button class="button scene-button is-white" value="omni3d_broccoli_003" onclick="selectCompVideo(this)">broccoli</button>
+          <button class="button scene-button is-white" value="omni3d_dinosaur_006" onclick="selectCompVideo(this)">dinosaur</button>
+          <button class="button scene-button is-white" value="omni3d_suitcase_006" onclick="selectCompVideo(this)">suitcase</button><br/>
+          <button class="button scene-button is-white" value="omni3d_hamburger_012" onclick="selectCompVideo(this)">hamburger</button>
+          <button class="button scene-button is-white" value="omni3d_pineapple_013" onclick="selectCompVideo(this)">pineapple</button>
+          <button class="button scene-button is-white" value="omni3d_vase_012" onclick="selectCompVideo(this)">vase</button>
+          <button class="button scene-button is-white" value="oppo_obj_27_pumpkin2" onclick="selectCompVideo(this)">pumpkin</button>
+          <button class="button scene-button is-white" value="oppo_obj_29_fabric_toy" onclick="selectCompVideo(this)">fabric toy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+
+<!-- <section class="section grey-bg">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">COLMAP-Free Results</h2>
+        <div id="colmapfree-carousel" class="carousel results-carousel">
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Ablation</h2>
+        <video poster="" id="evolution" autoplay controls muted loop playsinline height="100%">
+          <source src="static/videos/evolution.mp4" type="video/mp4">
+        </video>
+        <div class="content has-text-justified">
+          <p>
+            Evolution of the 3D objects with Gaussian splatting only, with structure priors and with Gaussian repair model injected.
+          </p>
+        </div>
+      </div>
+    </div>
+</section> -->
+
+<section class="section grey-bg" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title has-text-centered">Citation</h2>
+        <!-- <pre><code>@article{yang2024gaussianobject,
+  title   = {GaussianObject: High-Quality 3D Object Reconstruction from Four Views with Gaussian Splatting},
+  author  = {Chen Yang and Sikuang Li and Jiemin Fang and Ruofan Liang and
+             Lingxi Xie and Xiaopeng Zhang and Wei Shen and Qi Tian},
+  journal = {ACM Transactions on Graphics},
+  number  = {6},
+  volume  = {43},
+  year    = {2024}
+  month   = {December},
+}</code></pre> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            The website template was borrowed from <a href="https://gaussianobject.github.io/">Gaussian Object</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
