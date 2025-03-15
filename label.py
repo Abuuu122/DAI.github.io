@@ -6,10 +6,6 @@ def load_local_font(font_path, font_size):
     return font
 
 def add_label_to_images(input_directory, output_directory, font_path):
-    # Load the local font
-    font_size = 20
-    font = load_local_font(font_path, font_size)
-
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
 
@@ -18,6 +14,10 @@ def add_label_to_images(input_directory, output_directory, font_path):
             if file.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif')):
                 image_path = os.path.join(root, file)
                 image = Image.open(image_path).convert("RGBA")
+
+                # Calculate font size based on image size
+                font_size = int(min(image.size) * 0.08)  # 5% of the smaller dimension
+                font = load_local_font(font_path, font_size)
 
                 # Create a transparent overlay
                 txt = Image.new('RGBA', image.size, (255, 255, 255, 0))
@@ -52,7 +52,7 @@ def add_label_to_images(input_directory, output_directory, font_path):
                 combined.save(output_path)
 
 if __name__ == "__main__":
-    input_directory = "D:/DAI/static/images/comparison/scene7"  # Replace with the path to your input directory
-    output_directory = "D:/DAI/static/images/comparison/scene7_label"  # Replace with the path to your output directory
-    font_path = "D:/Download/Times New Roman.ttf"  # Replace with the path to your local font file
+    input_directory = "D:/DAI.github.io/static/images/comparison/scene1"  # Replace with the path to your input directory
+    output_directory = "D:/DAI.github.io/static/images/comparison/scene1_label"  # Replace with the path to your output directory
+    font_path = "D:/.Download/Times New Roman.ttf"  # Replace with the path to your local font file
     add_label_to_images(input_directory, output_directory, font_path)
