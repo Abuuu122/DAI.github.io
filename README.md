@@ -1,6 +1,6 @@
 # GausianObject
 
-This is the repository that contains source code for the [Dereflection Any Image](https://DAI.github.io), borrowed from [GaussianObject website](https://gaussianobject.github.io)
+This is the repository that contains source code for the [Dereflection Any Image](https://abuuu122.github.io/DAI.github.io/), borrowed from [GaussianObject website](https://gaussianobject.github.io)
 
 # Website License
 

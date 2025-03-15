@@ -15,8 +15,8 @@ function selectCompImage(element) {
 
   // canvas.replaceWith(canvas.cloneNode(true));
 
-  image1.src = "static/images/comparison/" + sceneName + "/DAI.png";
-  image2.src = "static/images/comparison/" + sceneName + '/' + methodName + ".png";
+  image1.src = "static/images/comparison/" + sceneName + "_label/DAI.png";
+  image2.src = "static/images/comparison/" + sceneName + '_label/' + methodName + ".png";
   // image.src = "static/images/megumi6.png";
   image2.onload = () => {
     // resizeAndDisplay(image);
