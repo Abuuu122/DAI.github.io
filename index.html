@@ -214,25 +214,25 @@
         <h2 class="title is-3">Visual Quality</h2>
         <div class="columns is-centered">
           <!-- 第一行 -->
-          <div class="column">
+            <div class="column">
             <span>
               <image id="group1-image1" src="static/images/teaser/1.png" style="display:none;"></image>
               <image id="group1-image2" src="static/images/teaser/1_.png" style="display:none;">
-              <canvas height=0 id="group1-canvas"></canvas>
+              <canvas id="group1-canvas"></canvas>
             </span>
           </div>
           <div class="column">
             <span>
               <image id="group2-image1" src="static/images/teaser/2.png" style="display:none;"></image>
               <image id="group2-image2" src="static/images/teaser/2_.png" style="display:none;">
-              <canvas height=0 id="group2-canvas"></canvas>
+              <canvas id="group2-canvas"></canvas>
             </span>
           </div>
           <div class="column">
             <span>
               <image id="group3-image1" src="static/images/teaser/3_crop.png" style="display:none;"></image>
               <image id="group3-image2" src="static/images/teaser/3_crop_.png" style="display:none;">
-              <canvas height=0 id="group3-canvas"></canvas>
+              <canvas id="group3-canvas"></canvas>
             </span>
           </div>
         </div>
@@ -242,21 +242,21 @@
             <span>
               <image id="group4-image1" src="static/images/teaser/4.png" style="display:none;">
               <image id="group4-image2" src="static/images/teaser/4_.png" style="display:none;">
-              <canvas height=0 id="group4-canvas"></canvas>
+              <canvas id="group4-canvas"></canvas>
             </span>
           </div>
           <div class="column">
             <span>
               <image id="group5-image1" src="static/images/teaser/5.png" style="display:none;">
               <image id="group5-image2" src="static/images/teaser/5_.png" style="display:none;">
-              <canvas height=0 id="group5-canvas"></canvas>
+              <canvas id="group5-canvas"></canvas>
             </span>
           </div>
           <div class="column">
             <span>
               <image id="group6-image1" src="static/images/teaser/6.png" style="display:none;">
               <image id="group6-image2" src="static/images/teaser/6_.png" style="display:none;">
-              <canvas height=0 id="group6-canvas"></canvas>
+              <canvas id="group6-canvas"></canvas>
             </span>
           </div>
         </div>
@@ -314,12 +314,12 @@
             <script>
               window.onload = function() {
                 compareImages("more-comparison-image1", "more-comparison-image2", "more-comparison-canvas");
-                compareImages("group1-image1", "group1-image2", "group1-canvas");
-                compareImages("group2-image1", "group2-image2", "group2-canvas");
-                compareImages("group3-image1", "group3-image2", "group3-canvas");
-                compareImages("group4-image1", "group4-image2", "group4-canvas");
-                compareImages("group5-image1", "group5-image2", "group5-canvas");
-                compareImages("group6-image1", "group6-image2", "group6-canvas");
+                compareImages("group1-image1", "group1-image2", "group1-canvas", true);
+                compareImages("group2-image1", "group2-image2", "group2-canvas", true);
+                compareImages("group3-image1", "group3-image2", "group3-canvas", true);
+                compareImages("group4-image1", "group4-image2", "group4-canvas", true);
+                compareImages("group5-image1", "group5-image2", "group5-canvas", true);
+                compareImages("group6-image1", "group6-image2", "group6-canvas", true);
               };
             </script>
           </span>
