@@ -24,7 +24,7 @@ function selectCompImage(element) {
   };
 }
 
-function compareImages(image1Id, image2Id, canvasId, ratio = 0.5) {
+function compareImages(image1Id, image2Id, canvasId) {
   console.log("Comparing images:", image1Id, image2Id, canvasId);
   let image1 = document.getElementById(image1Id);
   let image2 = document.getElementById(image2Id);
@@ -37,9 +37,12 @@ function compareImages(image1Id, image2Id, canvasId, ratio = 0.5) {
   ctx.imageSmoothingQuality = 'high';
 
   // 使用屏幕比例来设置固定高度
-  let fixedHeight = window.innerHeight * ratio; // 例如，使用屏幕高度的50%
-  let aspectRatio = image1.width / image1.height;
-  let fixedWidth = fixedHeight * aspectRatio;
+  // if (!window.initialInnerWidth) {
+  //   window.initialInnerWidth = window.innerWidth;
+  // }
+  let fixedWidth = canvas.width; // 使用 canvas 的宽度
+  let aspectRatio = image1.height / image1.width;
+  let fixedHeight = fixedWidth * aspectRatio;
 
   // 设置 canvas 的尺寸
   canvas.width = fixedWidth;
